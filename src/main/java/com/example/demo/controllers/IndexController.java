@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;  //si esta en gris queire decir que esta en el codigo pero no se esta utulizando
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -38,9 +39,14 @@ public class IndexController {
 
     @RequestMapping("/listar")
     public String listar (Model model){
+       /*  List<User> users = Arrays.asList(new User("ivan","chirinos","ivan.correo.com"),
+                new User("macoto","charaqui","charaqui.correo.com"),                      Esto se podria utilizar como otra opcion de arrays
+                new User("loco","valla","valla.correo.com"));   */
 
         List<User> users = new ArrayList<>();
-
+        users.add(new User("ivan","chirinos","ivan.correo.com"));
+        users.add(new User("macoto","charaqui","charaqui.correo.com"));
+        users.add(new User("loco","valla","valla.correo.com"));
         model.addAttribute("titulo","Listado de usuarios");
         model.addAttribute("users",users);
         return "listar";

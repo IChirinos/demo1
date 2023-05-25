@@ -9,5 +9,21 @@
 
 <div th:if="${users.size()==0}">No existe usuarios en la lista</div>
 
+<table th:if="${users.size()>0}">
+<thead>
+<tr>Name</tr>
+<tr>LastName</tr>
+<tr>Email</tr>
+</thead>
+<tbody>
+
+<tr th:each="user: ${users}">
+
+  <td th:text="${user.name}"></td>
+  <td th:text="${user.lastName}"></td>
+  <td th:text="${user.email}"></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
