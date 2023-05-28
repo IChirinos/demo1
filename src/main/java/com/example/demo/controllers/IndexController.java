@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,10 +19,15 @@ import java.util.List;
 public class IndexController {
 
     //@RequestMapping(value ="/index"; method = RequestMethod.GET) otra forma de usar
-
+    @Value("${text.title.primary}")
+    private String textIndex;
+    @Value("${text.title.secondary}")
+    private String textPerfil;
+    @Value("${text.title.third}")
+    private String textListar;
     @GetMapping({"/index","/","","/home"})
     public String  index(ModelMap model){
-        model.addAttribute("titulo","hola Sring frameowrk");
+        model.addAttribute("titulo",textIndex);
         return "index";
     }
 
@@ -32,7 +38,7 @@ public class IndexController {
         user.setLastName("chirinos");
         user.setEmail("ivan.correo.com");
         model.addAttribute("user",user);
-        model.addAttribute("titulo","Perfil del usuario:".concat(user.getName()));
+        model.addAttribute("titulo",textPerfil.concat(user.getName()));
 
         return "perfil";
     }
@@ -47,7 +53,7 @@ public class IndexController {
         users.add(new User("ivan","chirinos","ivan.correo.com"));
         users.add(new User("macoto","charaqui","charaqui.correo.com"));
         users.add(new User("loco","valla","valla.correo.com"));
-        model.addAttribute("titulo","Listado de usuarios");
+        model.addAttribute("titulo",textListar);
         model.addAttribute("users",users);
         return "listar";
 
